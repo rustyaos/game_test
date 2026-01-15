@@ -90,7 +90,25 @@ export default function Home() {
 			overlay: true,
 		});
 
-		handleLoad(engine, scene);
+		const handleLoad = async () => {
+			const havok = await HavokPhysics();
+			scene.enablePhysics(new Vector3(0, -981, 0), new HavokPlugin(true, havok));
+
+			SceneLoaderFlags.ForceFullSceneLoadingForIncremental = true;
+			await loadScene("/scene/", "example.babylon", scene, scriptsMap, {
+				quality: "high",
+			});
+
+			if (scene.activeCamera) {
+				scene.activeCamera.attachControl();
+			}
+
+			engine.runRenderLoop(() => {
+				scene.render();
+			});
+		};
+
+		void handleLoad();
 
 		let listener: () => void;
 		window.addEventListener("resize", listener = () => {
@@ -105,24 +123,6 @@ export default function Home() {
 		};
 	}, [canvasRef]);
 
-	async function handleLoad(engine: Engine, scene: Scene) {
-		const havok = await HavokPhysics();
-		scene.enablePhysics(new Vector3(0, -981, 0), new HavokPlugin(true, havok));
-
-		SceneLoaderFlags.ForceFullSceneLoadingForIncremental = true;
-		await loadScene("/scene/", "example.babylon", scene, scriptsMap, {
-			quality: "high",
-		});
-
-		if (scene.activeCamera) {
-			scene.activeCamera.attachControl();
-		}
-
-		engine.runRenderLoop(() => {
-			scene.render();
-		});
-	}
-
 	return (
 		<main className="flex w-screen h-screen flex-col items-center justify-between">
 			<canvas
@@ -132,5 +132,4 @@ export default function Home() {
 		</main>
 	);
 }
-
 

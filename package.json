@@ -6,7 +6,7 @@
 		"dev": "next dev --port 3001",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "eslint ."
 	},
 	"dependencies": {
 		"@babylonjs/addons": "8.33.0",
@@ -20,7 +20,7 @@
 		"@babylonjs/serializers": "8.33.0",
 		"babylonjs-editor-tools": "latest",
 		"babylonjs-gltf2interface": "8.33.0",
-		"next": "^14.2.35",
+		"next": "^16.1.2",
 		"react": "^18",
 		"react-dom": "^18",
 		"ws": "^8.18.0"
@@ -30,8 +30,8 @@
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"autoprefixer": "^10.0.1",
-		"eslint": "^8",
-		"eslint-config-next": "14.0.4",
+		"eslint": "^9.39.2",
+		"eslint-config-next": "16.1.2",
 		"postcss": "^8",
 		"raw-loader": "^4.0.2",
 		"tailwindcss": "^3.3.0",

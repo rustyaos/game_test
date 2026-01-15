@@ -1,6 +1,20 @@
 /** @type {import('next').NextConfig} */
+const path = require("path");
 const nextConfig = {
     reactStrictMode: false,
+    turbopack: {
+        root: path.resolve(__dirname),
+        rules: {
+            "*.f": {
+                loaders: ["raw-loader"],
+                as: "*.js",
+            },
+            "*.fx": {
+                loaders: ["raw-loader"],
+                as: "*.js",
+            },
+        },
+    },
     async headers() {
         return [
             {
@@ -15,13 +29,6 @@ const nextConfig = {
                 ],
             },
         ];
-    },
-    webpack: (config) => {
-        config.module.rules.push({
-            test: /\.fx?$/,
-            loader: "raw-loader"
-        });
-        return config;
     },
 };
 
