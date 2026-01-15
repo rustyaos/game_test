@@ -1,0 +1,10 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+        "inspector-mcp": {
+            "type": "remote",
+            "url": "http://localhost:8080/api/mcp",
+            "enabled": true
+        }
+    }
+}
